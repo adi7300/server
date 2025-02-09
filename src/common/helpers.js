@@ -3,13 +3,11 @@ const { jsPDF } = require("jspdf");
 const fs = require("fs");
 require("jspdf-autotable");
 
-const formatDate = (isoDate) => {
-  const date = new Date(isoDate);
-  const day = date.getDate().toString().padStart(2, "0");
-  const month = (date.getMonth() + 1).toString().padStart(2, "0");
-  const year = date.getFullYear().toString().slice(-2);
-
-  return `${day}/${month}/${year}`;
+const formatDate = (dateString) => {
+  const date = new Date(dateString);
+  // Add 12 hours to ensure we're in the middle of the day
+  date.setHours(12, 0, 0, 0);
+  return date.toLocaleDateString('en-GB'); // This will format as DD/MM/YYYY
 };
 
 const exportToPDF = async (body, drive, pdfName) => {
@@ -33,9 +31,8 @@ const exportToPDF = async (body, drive, pdfName) => {
   const AccValuesToAppend = accList.map((acc) => ({
     nightNo: acc.nightNo,
     location: acc.location,
-    options: `${acc.firstOption} ${
-      acc.secondOption ? `\\${acc.secondOption}` : ""
-    }  ${acc.thirdOption ? `\\${acc.thirdOption}` : ""} `,
+    options: `${acc.firstOption} ${acc.secondOption ? `\\${acc.secondOption}` : ""
+      }  ${acc.thirdOption ? `\\${acc.thirdOption}` : ""} `,
     remarks: acc.remarks,
   }));
 
@@ -98,8 +95,8 @@ const exportToPDF = async (body, drive, pdfName) => {
 
   // Upload the PDF to Google Drive
   const fileMetadata = {
-    name: `${pdfName} - TMB Preperation.pdf`, // Name of the PDF in Google Drive
-    parents: ["1AIyQa8pup2i_8JXiCz1ATKQChSJbz53M"], // Specify the folder where you want to save the PDF
+    name: `${pdfName} - TMB Preparation.pdf`, // Name of the PDF in Google Drive
+    parents: ["1eJl9EM1im6t-sIN8qqQMkPi570tX_Fqx"], // Specify the folder where you want to save the PDF
   };
 
   const media = {

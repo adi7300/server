@@ -1,13 +1,6 @@
-// import Helpers from "../common/helpers.js";
-const { formatDate, exportToPDF } = require("../common/helpers.js");
+const { formatDate } = require("../common/helpers.js");
 
 const { authSheets } = require("./auth.js");
-// import {
-//   styleTourLeaderSection,
-//   stylePaxListSection,
-//   stylePersonalPreferencesSection,
-//   styleAccommodationSection,
-// } from "./style.js";
 const {
   styleTourLeaderSection,
   stylePaxListSection,
@@ -48,7 +41,7 @@ const createSpreadsheet = async (req, res) => {
 
     await moveSpreadsheetToFolder(
       spreadsheetId,
-      "1AIyQa8pup2i_8JXiCz1ATKQChSJbz53M"
+      "1YnNPxKlT8Y25rnsY_rc_o0fKU0Uy8wK1"
     );
 
     await writeTourLeaderData(sheets, spreadsheetId, req.body);
@@ -73,7 +66,7 @@ const createPaxFolder = async ({ tourLeader }) => {
       resource: {
         name: tourLeader.name,
         mimeType: "application/vnd.google-apps.folder",
-        parents: ["1AIyQa8pup2i_8JXiCz1ATKQChSJbz53M"],
+        parents: ["1YnNPxKlT8Y25rnsY_rc_o0fKU0Uy8wK1"],
       },
       fields: "id",
     },
@@ -130,6 +123,7 @@ const writePaxListData = async (sheets, spreadsheetId, { paxList }) => {
     pax.phone,
     pax.email,
     pax.diet,
+    pax.birthDate,
     pax.remarks ? pax.remarks : "",
   ]);
 
@@ -139,7 +133,8 @@ const writePaxListData = async (sheets, spreadsheetId, { paxList }) => {
     "Name",
     "Phone",
     "E-Mail",
-    "	Diet",
+    "Diet",
+    "Birth date",
     "Comments",
   ]);
 
@@ -211,8 +206,7 @@ const writeAccommodationData = async (
   const valuesToAppend = accList.map((pax) => [
     pax.nightNo,
     pax.location,
-    `${pax.firstOption} ${pax.secondOption ? `\\${pax.secondOption}` : ""}  ${
-      pax.thirdOption ? `\\${pax.thirdOption}` : ""
+    `${pax.firstOption} ${pax.secondOption ? `\\${pax.secondOption}` : ""}  ${pax.thirdOption ? `\\${pax.thirdOption}` : ""
     } `,
     "",
     "",
@@ -231,7 +225,7 @@ const writeAccommodationData = async (
     "Address",
     "Price(per person)",
     "Room type",
-    "Board Basis",
+    "Board basis",
     "Payment date",
     "Cancellation policy",
     "Comments",
