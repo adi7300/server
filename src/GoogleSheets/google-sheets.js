@@ -123,7 +123,7 @@ const writePaxListData = async (sheets, spreadsheetId, { paxList }) => {
     pax.phone,
     pax.email,
     pax.diet,
-    pax.birthDate,
+    formatDate(pax.birthDate),
     pax.remarks ? pax.remarks : "",
   ]);
 
