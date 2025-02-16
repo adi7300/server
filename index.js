@@ -29,7 +29,7 @@ app.post("/api/submitForm", async (req, res) => {
     await createPaxFolder(req.body);
     await createSpreadsheet(req, res);
   } catch (error) {
-    console.error("Error is:", error);
+    console.error("Error is: ", error);
   }
 });
 
