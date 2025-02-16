@@ -25,7 +25,7 @@ app.get("/", (req, res) => {
 app.post("/api/submitForm", async (req, res) => {
   console.log("🚀 ~ file: index.js:17 ~ app.post ~ req:", req.body);
   try {
-    await addCustomer(req.body);
+    // await addCustomer(req.body);
     await createPaxFolder(req.body);
     await createSpreadsheet(req, res);
   } catch (error) {
