@@ -119,12 +119,12 @@ const writePaxListData = async (sheets, spreadsheetId, { paxList }) => {
   const valuesToAppend = paxList.map((pax) => [
     "",
     pax.contactPerson ? "V" : "",
-    pax.name,
-    pax.phone,
-    pax.email,
-    pax.diet,
-    formatDate(pax.birthDate),
-    pax.remarks ? pax.remarks : "",
+    pax?.name || "",
+    pax?.phone || "",
+    pax?.email || "",
+    pax?.diet || "",
+    formatDate(pax?.birthDate) || "",
+    pax.remarks || ""
   ]);
 
   valuesToAppend.unshift([
@@ -137,12 +137,12 @@ const writePaxListData = async (sheets, spreadsheetId, { paxList }) => {
     "Birth date",
     "Comments",
   ]);
-
+  console.log('valuesToAppend is:', valuesToAppend);
   try {
     await sheets.spreadsheets.values.append({
       spreadsheetId: spreadsheetId,
       range: "Sheet1!A2",
-      valueInputOption: "RAW",
+      valueInputOption: "USER_ENTERED",
       resource: {
         values: valuesToAppend,
       },
@@ -168,7 +168,7 @@ const writePersonalPreferencesData = async (
   try {
     await sheets.spreadsheets.values.append({
       spreadsheetId: spreadsheetId,
-      range: "Sheet1!H1:K1",
+      range: "Sheet1!I1:M1",
       valueInputOption: "USER_ENTERED",
       resource: {
         values: [

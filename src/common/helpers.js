@@ -3,11 +3,14 @@ const { jsPDF } = require("jspdf");
 const fs = require("fs");
 require("jspdf-autotable");
 
-const formatDate = (dateString) => {
-  const date = new Date(dateString);
-  // Add 12 hours to ensure we're in the middle of the day
-  date.setHours(12, 0, 0, 0);
-  return date.toLocaleDateString('en-GB'); // This will format as DD/MM/YYYY
+const formatDate = (date) => {
+  if (!date) return "";
+  const d = new Date(date);
+  return d.toLocaleDateString('en-GB', {
+    day: '2-digit',
+    month: '2-digit',
+    year: 'numeric'
+  });
 };
 
 const exportToPDF = async (body, drive, pdfName) => {

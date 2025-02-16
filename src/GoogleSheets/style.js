@@ -11,7 +11,7 @@ const styleTourLeaderSection = async (sheets, spreadsheetId) => {
                 startRowIndex: 0,
                 endRowIndex: 1,
                 startColumnIndex: 0,
-                endColumnIndex: 7,
+                endColumnIndex: 8,
               },
               top: {
                 style: "SOLID",
@@ -58,7 +58,7 @@ const styleTourLeaderSection = async (sheets, spreadsheetId) => {
                 startRowIndex: 0,
                 endRowIndex: 1,
                 startColumnIndex: 0,
-                endColumnIndex: 7,
+                endColumnIndex: 8,
               },
               cell: {
                 userEnteredFormat: {
@@ -97,7 +97,7 @@ const stylePaxListSection = async (sheets, spreadsheetId, PaxNo) => {
                 startRowIndex: 1,
                 endRowIndex: 2, // Only the first row
                 startColumnIndex: 0,
-                endColumnIndex: 7,
+                endColumnIndex: 8,
               },
               top: {
                 style: "SOLID",
@@ -144,7 +144,7 @@ const stylePaxListSection = async (sheets, spreadsheetId, PaxNo) => {
                 startRowIndex: 1,
                 endRowIndex: PaxNo + 2,
                 startColumnIndex: 0,
-                endColumnIndex: 7,
+                endColumnIndex: 8,
               },
               top: {
                 style: "SOLID",
@@ -191,15 +191,15 @@ const stylePaxListSection = async (sheets, spreadsheetId, PaxNo) => {
                 startRowIndex: 1,
                 endRowIndex: PaxNo + 2,
                 startColumnIndex: 0,
-                endColumnIndex: 7,
+                endColumnIndex: 8,
               },
               cell: {
                 userEnteredFormat: {
                   backgroundColor: {
-                    //Yellow
+                    //Light Pink
                     red: 1,
-                    green: 0.92,
-                    blue: 0.6,
+                    green: 0.85,
+                    blue: 0.87,
                   },
                   textFormat: {
                     bold: true,
@@ -230,8 +230,8 @@ const stylePersonalPreferencesSection = async (sheets, spreadsheetId) => {
                 sheetId: 0,
                 startRowIndex: 0,
                 endRowIndex: 1,
-                startColumnIndex: 7,
-                endColumnIndex: 12,
+                startColumnIndex: 8,
+                endColumnIndex: 13,
               },
               mergeType: "MERGE_ALL",
             },
@@ -243,7 +243,7 @@ const stylePersonalPreferencesSection = async (sheets, spreadsheetId) => {
                 startRowIndex: 3,
                 endRowIndex: 5,
                 startColumnIndex: 8,
-                endColumnIndex: 12,
+                endColumnIndex: 13,
               },
               cell: {
                 userEnteredFormat: {
@@ -270,7 +270,7 @@ const stylePersonalPreferencesSection = async (sheets, spreadsheetId) => {
                 startRowIndex: 4,
                 endRowIndex: 5,
                 startColumnIndex: 8,
-                endColumnIndex: 12,
+                endColumnIndex: 13,
               },
               cell: {
                 userEnteredFormat: {
@@ -297,7 +297,7 @@ const stylePersonalPreferencesSection = async (sheets, spreadsheetId) => {
                 startRowIndex: 3,
                 endRowIndex: 4,
                 startColumnIndex: 8,
-                endColumnIndex: 12,
+                endColumnIndex: 13,
               },
               mergeType: "MERGE_ALL",
             },
@@ -309,7 +309,7 @@ const stylePersonalPreferencesSection = async (sheets, spreadsheetId) => {
                 startRowIndex: 4,
                 endRowIndex: 5,
                 startColumnIndex: 8,
-                endColumnIndex: 12,
+                endColumnIndex: 13,
               },
               mergeType: "MERGE_ALL",
             },
@@ -320,8 +320,8 @@ const stylePersonalPreferencesSection = async (sheets, spreadsheetId) => {
                 sheetId: 0,
                 startRowIndex: 0,
                 endRowIndex: 1,
-                startColumnIndex: 7,
-                endColumnIndex: 12,
+                startColumnIndex: 8,
+                endColumnIndex: 13,
               },
               cell: {
                 userEnteredFormat: {
@@ -346,8 +346,8 @@ const stylePersonalPreferencesSection = async (sheets, spreadsheetId) => {
                 sheetId: 0,
                 startRowIndex: 0,
                 endRowIndex: 1, // Only the first row
-                startColumnIndex: 7,
-                endColumnIndex: 12,
+                startColumnIndex: 8,
+                endColumnIndex: 13,
               },
               top: {
                 style: "SOLID",
@@ -393,8 +393,8 @@ const stylePersonalPreferencesSection = async (sheets, spreadsheetId) => {
                 sheetId: 0,
                 startRowIndex: 0,
                 endRowIndex: 5,
-                startColumnIndex: 7,
-                endColumnIndex: 12,
+                startColumnIndex: 8,
+                endColumnIndex: 13,
               },
               top: {
                 style: "SOLID",
@@ -440,8 +440,8 @@ const stylePersonalPreferencesSection = async (sheets, spreadsheetId) => {
                 sheetId: 0,
                 startRowIndex: 0,
                 endRowIndex: 5,
-                startColumnIndex: 7,
-                endColumnIndex: 12,
+                startColumnIndex: 8,
+                endColumnIndex: 13,
               },
               cell: {
                 userEnteredFormat: {
