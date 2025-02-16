@@ -137,7 +137,6 @@ const writePaxListData = async (sheets, spreadsheetId, { paxList }) => {
     "Birth date",
     "Comments",
   ]);
-  console.log('valuesToAppend is:', valuesToAppend);
   try {
     await sheets.spreadsheets.values.append({
       spreadsheetId: spreadsheetId,
