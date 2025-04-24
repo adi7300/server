@@ -13,12 +13,8 @@ const {
   createSpreadsheet,
 } = require("./src/GoogleSheets/google-sheets");
 const app = express();
-<<<<<<< HEAD
 const PORT = 8080;
-=======
-// const PORT = 8080;
-const PORT = 3001;
->>>>>>> 38c5d18 (change tables)
+// const PORT = 3001;
 
 app.use(cors());
 app.use(cors({ origin: true, credentials: true }));
