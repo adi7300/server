@@ -172,11 +172,8 @@ const writePersonalPreferencesData = async (
   try {
     await sheets.spreadsheets.values.update({
       spreadsheetId: spreadsheetId,
-<<<<<<< HEAD
-      range: "Sheet1!I1:M1",
-=======
+
       range: "Sheet1!H1:L5",
->>>>>>> 38c5d18 (change tables)
       valueInputOption: "USER_ENTERED",
       resource: {
         values: [

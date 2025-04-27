@@ -97,56 +97,6 @@ const stylePaxListSection = async (sheets, spreadsheetId, PaxNo) => {
               range: {
                 sheetId: 0,
                 startRowIndex: 1,
-<<<<<<< HEAD
-                endRowIndex: 2, // Only the first row
-                startColumnIndex: 0,
-                endColumnIndex: 8,
-              },
-              top: {
-                style: "SOLID",
-                width: 5,
-                color: {
-                  red: 0,
-                  green: 0,
-                  blue: 0,
-                },
-              },
-              bottom: {
-                style: "SOLID",
-                width: 5,
-                color: {
-                  red: 0,
-                  green: 0,
-                  blue: 0,
-                },
-              },
-              left: {
-                style: "SOLID",
-                width: 5,
-                color: {
-                  red: 0,
-                  green: 0,
-                  blue: 0,
-                },
-              },
-              right: {
-                style: "SOLID",
-                width: 5,
-                color: {
-                  red: 0,
-                  green: 0,
-                  blue: 0,
-                },
-              },
-            },
-          },
-          {
-            updateBorders: {
-              range: {
-                sheetId: 0,
-                startRowIndex: 1,
-=======
->>>>>>> 38c5d18 (change tables)
                 endRowIndex: PaxNo + 2,
                 startColumnIndex: 0,
                 endColumnIndex: 8,
@@ -201,16 +151,9 @@ const stylePaxListSection = async (sheets, spreadsheetId, PaxNo) => {
               cell: {
                 userEnteredFormat: {
                   backgroundColor: {
-<<<<<<< HEAD
-                    //Light Pink
-                    red: 1,
-                    green: 0.85,
-                    blue: 0.87,
-=======
                     red: 1,
                     green: 0.75,
                     blue: 0.8,
->>>>>>> 38c5d18 (change tables)
                   },
                   textFormat: {
                     bold: true,
@@ -268,10 +211,6 @@ const stylePersonalPreferencesSection = async (sheets, spreadsheetId) => {
                 sheetId: 0,
                 startRowIndex: 0,
                 endRowIndex: 1,
-<<<<<<< HEAD
-                startColumnIndex: 8,
-                endColumnIndex: 13,
-=======
                 startColumnIndex: 7,
                 endColumnIndex: 9,
               },
@@ -286,7 +225,6 @@ const stylePersonalPreferencesSection = async (sheets, spreadsheetId) => {
                 endRowIndex: 1,
                 startColumnIndex: 9,
                 endColumnIndex: 12,
->>>>>>> 38c5d18 (change tables)
               },
               mergeType: "MERGE_ALL",
             },
@@ -298,11 +236,7 @@ const stylePersonalPreferencesSection = async (sheets, spreadsheetId) => {
                 startRowIndex: 1,
                 endRowIndex: 2,
                 startColumnIndex: 8,
-<<<<<<< HEAD
-                endColumnIndex: 13,
-=======
                 endColumnIndex: 10,
->>>>>>> 38c5d18 (change tables)
               },
               mergeType: "MERGE_ALL",
             },
@@ -311,17 +245,10 @@ const stylePersonalPreferencesSection = async (sheets, spreadsheetId) => {
             mergeCells: {
               range: {
                 sheetId: 0,
-<<<<<<< HEAD
-                startRowIndex: 4,
-                endRowIndex: 5,
-                startColumnIndex: 8,
-                endColumnIndex: 13,
-=======
                 startRowIndex: 1,
                 endRowIndex: 2,
                 startColumnIndex: 10,
                 endColumnIndex: 12,
->>>>>>> 38c5d18 (change tables)
               },
               mergeType: "MERGE_ALL",
             },
@@ -357,13 +284,8 @@ const stylePersonalPreferencesSection = async (sheets, spreadsheetId) => {
                 sheetId: 0,
                 startRowIndex: 0,
                 endRowIndex: 1,
-<<<<<<< HEAD
-                startColumnIndex: 8,
-                endColumnIndex: 13,
-=======
                 startColumnIndex: 9,
                 endColumnIndex: 12,
->>>>>>> 38c5d18 (change tables)
               },
               cell: {
                 userEnteredFormat: {
@@ -378,106 +300,7 @@ const stylePersonalPreferencesSection = async (sheets, spreadsheetId) => {
                   horizontalAlignment: "LEFT",
                 },
               },
-<<<<<<< HEAD
-              fields:
-                "userEnteredFormat.backgroundColor,userEnteredFormat.textFormat,userEnteredFormat.horizontalAlignment,userEnteredFormat.verticalAlignment",
-            },
-          },
-          {
-            updateBorders: {
-              range: {
-                sheetId: 0,
-                startRowIndex: 0,
-                endRowIndex: 1, // Only the first row
-                startColumnIndex: 8,
-                endColumnIndex: 13,
-              },
-              top: {
-                style: "SOLID",
-                width: 5,
-                color: {
-                  red: 0,
-                  green: 0,
-                  blue: 0,
-                },
-              },
-              bottom: {
-                style: "SOLID",
-                width: 5,
-                color: {
-                  red: 0,
-                  green: 0,
-                  blue: 0,
-                },
-              },
-              left: {
-                style: "SOLID",
-                width: 5,
-                color: {
-                  red: 0,
-                  green: 0,
-                  blue: 0,
-                },
-              },
-              right: {
-                style: "SOLID",
-                width: 5,
-                color: {
-                  red: 0,
-                  green: 0,
-                  blue: 0,
-                },
-              },
-            },
-          },
-          {
-            updateBorders: {
-              range: {
-                sheetId: 0,
-                startRowIndex: 0,
-                endRowIndex: 5,
-                startColumnIndex: 8,
-                endColumnIndex: 13,
-              },
-              top: {
-                style: "SOLID",
-                width: 5,
-                color: {
-                  red: 0,
-                  green: 0,
-                  blue: 0,
-                },
-              },
-              bottom: {
-                style: "SOLID",
-                width: 5,
-                color: {
-                  red: 0,
-                  green: 0,
-                  blue: 0,
-                },
-              },
-              left: {
-                style: "SOLID",
-                width: 5,
-                color: {
-                  red: 0,
-                  green: 0,
-                  blue: 0,
-                },
-              },
-              right: {
-                style: "SOLID",
-                width: 5,
-                color: {
-                  red: 0,
-                  green: 0,
-                  blue: 0,
-                },
-              },
-=======
               fields: "userEnteredFormat.textFormat.foregroundColor,userEnteredFormat.textFormat.bold,userEnteredFormat.horizontalAlignment"
->>>>>>> 38c5d18 (change tables)
             },
           },
           // Apply special formatting to other cells
