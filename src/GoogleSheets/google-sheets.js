@@ -190,8 +190,7 @@ const writeAccommodationData = async (
   spreadsheetId,
   { accList, paxList }
 ) => {
-  const startingRow = paxList.length + 3 < 7 ? 7 : paxList.length + 4;
-
+  const startingRow = Math.max(6, paxList.length + 3);
   const valuesToAppend = accList.map((pax) => [
     pax.nightNo,
     pax.location,
