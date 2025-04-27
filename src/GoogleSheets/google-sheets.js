@@ -190,7 +190,8 @@ const writeAccommodationData = async (
   spreadsheetId,
   { accList, paxList }
 ) => {
-  const startingRow = Math.max(6, paxList.length + 3);
+  const startingRow = paxList.length + 3 < 7 ? 7 : paxList.length + 4;
+
   const valuesToAppend = accList.map((pax) => [
     pax.nightNo,
     pax.location,
@@ -224,7 +225,7 @@ const writeAccommodationData = async (
   try {
     await sheets.spreadsheets.values.append({
       spreadsheetId: spreadsheetId,
-      range: `Sheet1!A${startingRow} `,
+      range: `Sheet1!A${startingRow}`,
       valueInputOption: "RAW",
       resource: {
         values: valuesToAppend,
