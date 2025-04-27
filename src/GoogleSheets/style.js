@@ -186,8 +186,8 @@ const stylePersonalPreferencesSection = async (sheets, spreadsheetId) => {
                 sheetId: 0,
                 startRowIndex: 0,
                 endRowIndex: 5,
-                startColumnIndex: 7, // Changed from 7 to exactly 7
-                endColumnIndex: 12,
+                startColumnIndex: 7, // Start at column H (index 7)
+                endColumnIndex: 12, // End at column L (index 12)
               },
               cell: {
                 userEnteredFormat: {
@@ -259,8 +259,8 @@ const stylePersonalPreferencesSection = async (sheets, spreadsheetId) => {
                 sheetId: 0,
                 startRowIndex: 3,
                 endRowIndex: 4,
-                startColumnIndex: 9,
-                endColumnIndex: 13,
+                startColumnIndex: 8,
+                endColumnIndex: 12,
               },
               mergeType: "MERGE_ALL",
             },
@@ -271,8 +271,8 @@ const stylePersonalPreferencesSection = async (sheets, spreadsheetId) => {
                 sheetId: 0,
                 startRowIndex: 4,
                 endRowIndex: 5,
-                startColumnIndex: 9,
-                endColumnIndex: 13,
+                startColumnIndex: 8,
+                endColumnIndex: 12,
               },
               mergeType: "MERGE_ALL",
             },
@@ -330,7 +330,7 @@ const stylePersonalPreferencesSection = async (sheets, spreadsheetId) => {
                 startRowIndex: 0,
                 endRowIndex: 5,
                 startColumnIndex: 7, // Changed from 8 to 7
-                endColumnIndex: 13,
+                endColumnIndex: 12,
               },
               top: {
                 style: "SOLID",
