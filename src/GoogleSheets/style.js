@@ -186,8 +186,8 @@ const stylePersonalPreferencesSection = async (sheets, spreadsheetId) => {
                 sheetId: 0,
                 startRowIndex: 0,
                 endRowIndex: 5,
-                startColumnIndex: 7, // Start at column H (index 7)
-                endColumnIndex: 12, // End at column L (index 12)
+                startColumnIndex: 7, // Start at column H
+                endColumnIndex: 12, // End at column L
               },
               cell: {
                 userEnteredFormat: {
@@ -204,7 +204,7 @@ const stylePersonalPreferencesSection = async (sheets, spreadsheetId) => {
               fields: "userEnteredFormat.backgroundColor,userEnteredFormat.textFormat.bold",
             },
           },
-          // Merge cells
+          // Merge cells for the first row (H1-I1 and J1-L1)
           {
             mergeCells: {
               range: {
@@ -229,18 +229,20 @@ const stylePersonalPreferencesSection = async (sheets, spreadsheetId) => {
               mergeType: "MERGE_ALL",
             },
           },
+          // Keep H2 as a single cell and merge I2-J2
           {
             mergeCells: {
               range: {
                 sheetId: 0,
                 startRowIndex: 1,
                 endRowIndex: 2,
-                startColumnIndex: 7,
+                startColumnIndex: 8,
                 endColumnIndex: 10,
               },
               mergeType: "MERGE_ALL",
             },
           },
+          // Merge K2-L2
           {
             mergeCells: {
               range: {
@@ -253,6 +255,7 @@ const stylePersonalPreferencesSection = async (sheets, spreadsheetId) => {
               mergeType: "MERGE_ALL",
             },
           },
+          // Merge I4-L4 and I5-L5
           {
             mergeCells: {
               range: {
