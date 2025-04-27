@@ -161,14 +161,6 @@ const writePersonalPreferencesData = async (
     ? formatDate(bookingPreference.endingDate)
     : "";
 
-  // Format dates with flight numbers if available
-  const formattedFromDate = bookingPreference.departureFlightNo
-    ? `${fromDate} (${bookingPreference.departureFlightNo})`
-    : fromDate;
-  const formattedUntilDate = bookingPreference.returnFlightNo
-    ? `${untilDate} (${bookingPreference.returnFlightNo})`
-    : untilDate;
-
   try {
     await sheets.spreadsheets.values.update({
       spreadsheetId: spreadsheetId,
@@ -178,7 +170,9 @@ const writePersonalPreferencesData = async (
       resource: {
         values: [
           ["Personal preferences", "", "", bookingPreference.flightBooked ? "Flights Reserved" : "", ""],
-          ["Dates", "", formattedFromDate, "", formattedUntilDate],
+          ["Dates", "", bookingPreference.departureFlightNo ? `${fromDate} (${bookingPreference.departureFlightNo})` : fromDate, "", bookingPreference.returnFlightNo
+            ? `${untilDate} (${bookingPreference.returnFlightNo})`
+            : untilDate],
           ["Room Type", bookingPreference.roomType, bookingPreference.bedType, "", bookingPreference.level],
           ["Booking Comments", bookingPreference.remarks, "", "", ""],
           ["General Comments", otherComments, "", "", ""],
@@ -231,7 +225,7 @@ const writeAccommodationData = async (
   try {
     await sheets.spreadsheets.values.append({
       spreadsheetId: spreadsheetId,
-      range: `Sheet1!A${startingRow}`,
+      range: `Sheet1!A${startingRow} `,
       valueInputOption: "RAW",
       resource: {
         values: valuesToAppend,
