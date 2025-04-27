@@ -12,7 +12,7 @@ const styleTourLeaderSection = async (sheets, spreadsheetId) => {
                 startRowIndex: 0,
                 endRowIndex: 1,
                 startColumnIndex: 0,
-                endColumnIndex: 7, // Changed from 8 to 7
+                endColumnIndex: 7, // End at column G
               },
               top: {
                 style: "SOLID",
@@ -59,7 +59,7 @@ const styleTourLeaderSection = async (sheets, spreadsheetId) => {
                 startRowIndex: 0,
                 endRowIndex: 1,
                 startColumnIndex: 0,
-                endColumnIndex: 7, // Changed from 8 to 7
+                endColumnIndex: 7, // End at column G
               },
               cell: {
                 userEnteredFormat: {
@@ -99,7 +99,7 @@ const stylePaxListSection = async (sheets, spreadsheetId, PaxNo) => {
                 startRowIndex: 1,
                 endRowIndex: PaxNo + 2,
                 startColumnIndex: 0,
-                endColumnIndex: 7, // Changed from 8 to 7
+                endColumnIndex: 7, // End at column G
               },
               top: {
                 style: "SOLID",
@@ -146,7 +146,7 @@ const stylePaxListSection = async (sheets, spreadsheetId, PaxNo) => {
                 startRowIndex: 1,
                 endRowIndex: PaxNo + 2,
                 startColumnIndex: 0,
-                endColumnIndex: 7, // Changed from 8 to 7
+                endColumnIndex: 7, // End at column G
               },
               cell: {
                 userEnteredFormat: {
@@ -211,7 +211,7 @@ const stylePersonalPreferencesSection = async (sheets, spreadsheetId) => {
                 sheetId: 0,
                 startRowIndex: 0,
                 endRowIndex: 1,
-                startColumnIndex: 7, // Changed from 7 to exactly 7
+                startColumnIndex: 7,
                 endColumnIndex: 9,
               },
               mergeType: "MERGE_ALL",
@@ -235,7 +235,7 @@ const stylePersonalPreferencesSection = async (sheets, spreadsheetId) => {
                 sheetId: 0,
                 startRowIndex: 1,
                 endRowIndex: 2,
-                startColumnIndex: 7, // Changed from 8 to 7
+                startColumnIndex: 7,
                 endColumnIndex: 10,
               },
               mergeType: "MERGE_ALL",
@@ -310,7 +310,7 @@ const stylePersonalPreferencesSection = async (sheets, spreadsheetId) => {
                 sheetId: 0,
                 startRowIndex: 3,
                 endRowIndex: 5,
-                startColumnIndex: 7, // Changed from 8 to 7
+                startColumnIndex: 7,
                 endColumnIndex: 12,
               },
               cell: {
@@ -329,7 +329,7 @@ const stylePersonalPreferencesSection = async (sheets, spreadsheetId) => {
                 sheetId: 0,
                 startRowIndex: 0,
                 endRowIndex: 5,
-                startColumnIndex: 7, // Changed from 8 to 7
+                startColumnIndex: 7,
                 endColumnIndex: 12,
               },
               top: {
@@ -379,14 +379,13 @@ const stylePersonalPreferencesSection = async (sheets, spreadsheetId) => {
 };
 
 //Blue table
-const styleAccommodationSection = async (
-  sheets,
-  spreadsheetId,
-  paxNo,
-  accNo
-) => {
-  const startingRow = paxNo + 3 < 6 ? 6 : paxNo + 3;
+const styleAccommodationSection = async (sheets, spreadsheetId, paxNo, accNo) => {
+  // Make sure the blue table starts after the pink table and green table
+  // Using Math.max to ensure it starts at least at row 6 or after PaxNo + 3
+  const startingRow = Math.max(6, paxNo + 3);
   const endingRow = startingRow + accNo + 1;
+
+  console.log(`Styling accommodation section from row ${startingRow} to ${endingRow}`);
 
   try {
     await sheets.spreadsheets.batchUpdate({
@@ -468,8 +467,9 @@ const styleAccommodationSection = async (
         ],
       },
     });
+    console.log("Accommodation section styled successfully");
   } catch (error) {
-    console.log("styleAccommodationSection batchUpdate error is:", error);
+    console.error("styleAccommodationSection error:", error);
   }
 };
 
