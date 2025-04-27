@@ -44,11 +44,10 @@ const createSpreadsheet = async (req, res) => {
       "1YnNPxKlT8Y25rnsY_rc_o0fKU0Uy8wK1"
     );
 
-    await writeTourLeaderData(sheets, spreadsheetId, req.body);
-    await writePaxListData(sheets, spreadsheetId, req.body);
-    await writePersonalPreferencesData(sheets, spreadsheetId, req.body);
-    await writeAccommodationData(sheets, spreadsheetId, req.body);
-    // await Helpers.exportToPDF(req.body, drive, tourLeaderName)
+    await writeTourLeaderData(sheets, spreadsheetId, req.body); //Grey table
+    await writePaxListData(sheets, spreadsheetId, req.body); //Pink table
+    await writePersonalPreferencesData(sheets, spreadsheetId, req.body); //Green table
+    await writeAccommodationData(sheets, spreadsheetId, req.body); //Blue table
 
     return res.json({
       message: `Google Sheet created with ID: ${spreadsheetId}`,
@@ -117,7 +116,6 @@ const writeTourLeaderData = async (sheets, spreadsheetId, { tourLeader }) => {
 
 const writePaxListData = async (sheets, spreadsheetId, { paxList }) => {
   const valuesToAppend = paxList.map((pax) => [
-    "",
     pax.contactPerson ? "V" : "",
     pax?.name || "",
     pax?.phone || "",
@@ -128,7 +126,6 @@ const writePaxListData = async (sheets, spreadsheetId, { paxList }) => {
   ]);
 
   valuesToAppend.unshift([
-    `Pax List (${paxList.length})`,
     "Contact person",
     "Name",
     "Phone",
@@ -164,34 +161,36 @@ const writePersonalPreferencesData = async (
     ? formatDate(bookingPreference.endingDate)
     : "";
 
+  // Format dates with flight numbers if available
+  const formattedFromDate = bookingPreference.departureFlightNo
+    ? `${fromDate} (${bookingPreference.departureFlightNo})`
+    : fromDate;
+  const formattedUntilDate = bookingPreference.returnFlightNo
+    ? `${untilDate} (${bookingPreference.returnFlightNo})`
+    : untilDate;
+
   try {
-    await sheets.spreadsheets.values.append({
+    await sheets.spreadsheets.values.update({
       spreadsheetId: spreadsheetId,
+<<<<<<< HEAD
       range: "Sheet1!I1:M1",
+=======
+      range: "Sheet1!H1:L5",
+>>>>>>> 38c5d18 (change tables)
       valueInputOption: "USER_ENTERED",
       resource: {
         values: [
-          ["Personal preferences"],
-          [
-            "Dates",
-            fromDate,
-            untilDate,
-            bookingPreference.flightBooked ? "Flight Reserved" : "",
-          ],
-          [
-            "Room Type",
-            bookingPreference.roomType,
-            bookingPreference.bedType,
-            bookingPreference.level,
-          ],
-          ["Booking Comments", bookingPreference.remarks],
-          ["General Comments", otherComments],
+          ["Personal preferences", "", "", bookingPreference.flightBooked ? "Flights Reserved" : "", ""],
+          ["Dates", "", formattedFromDate, "", formattedUntilDate],
+          ["Room Type", bookingPreference.roomType, bookingPreference.bedType, "", bookingPreference.level],
+          ["Booking Comments", bookingPreference.remarks, "", "", ""],
+          ["General Comments", otherComments, "", "", ""],
         ],
       },
     });
-    stylePersonalPreferencesSection(sheets, spreadsheetId);
+    await stylePersonalPreferencesSection(sheets, spreadsheetId);
   } catch (error) {
-    console.error("writeSheetsData error is:", error);
+    console.error("writePersonalPreferencesData error is:", error);
   }
 };
 
@@ -205,15 +204,16 @@ const writeAccommodationData = async (
   const valuesToAppend = accList.map((pax) => [
     pax.nightNo,
     pax.location,
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
     `${pax.firstOption} ${pax.secondOption ? `\\${pax.secondOption}` : ""}  ${pax.thirdOption ? `\\${pax.thirdOption}` : ""
     } `,
-    "",
-    "",
-    "",
-    "",
-    "",
-    "",
-    "",
     pax.remarks,
   ]);
 
@@ -228,6 +228,7 @@ const writeAccommodationData = async (
     "Payment date",
     "Cancellation policy",
     "Comments",
+    "Client Preferences",
     "Client Remarks",
   ]);
   try {

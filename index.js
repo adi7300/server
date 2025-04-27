@@ -13,7 +13,12 @@ const {
   createSpreadsheet,
 } = require("./src/GoogleSheets/google-sheets");
 const app = express();
+<<<<<<< HEAD
 const PORT = 8080;
+=======
+// const PORT = 8080;
+const PORT = 3001;
+>>>>>>> 38c5d18 (change tables)
 
 app.use(cors());
 app.use(cors({ origin: true, credentials: true }));
@@ -25,7 +30,7 @@ app.get("/", (req, res) => {
 app.post("/api/submitForm", async (req, res) => {
   console.log("🚀 ~ file: index.js:17 ~ app.post ~ req:", req.body);
   try {
-    await addCustomer(req.body);
+    // await addCustomer(req.body); //TODO: need to be uncommented before deploying
     await createPaxFolder(req.body);
     await createSpreadsheet(req, res);
   } catch (error) {

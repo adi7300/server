@@ -1,3 +1,4 @@
+//Grey table
 const styleTourLeaderSection = async (sheets, spreadsheetId) => {
   try {
     await sheets.spreadsheets.batchUpdate({
@@ -84,6 +85,7 @@ const styleTourLeaderSection = async (sheets, spreadsheetId) => {
   }
 };
 
+//Pink table
 const stylePaxListSection = async (sheets, spreadsheetId, PaxNo) => {
   try {
     await sheets.spreadsheets.batchUpdate({
@@ -95,6 +97,7 @@ const stylePaxListSection = async (sheets, spreadsheetId, PaxNo) => {
               range: {
                 sheetId: 0,
                 startRowIndex: 1,
+<<<<<<< HEAD
                 endRowIndex: 2, // Only the first row
                 startColumnIndex: 0,
                 endColumnIndex: 8,
@@ -142,6 +145,8 @@ const stylePaxListSection = async (sheets, spreadsheetId, PaxNo) => {
               range: {
                 sheetId: 0,
                 startRowIndex: 1,
+=======
+>>>>>>> 38c5d18 (change tables)
                 endRowIndex: PaxNo + 2,
                 startColumnIndex: 0,
                 endColumnIndex: 8,
@@ -196,10 +201,16 @@ const stylePaxListSection = async (sheets, spreadsheetId, PaxNo) => {
               cell: {
                 userEnteredFormat: {
                   backgroundColor: {
+<<<<<<< HEAD
                     //Light Pink
                     red: 1,
                     green: 0.85,
                     blue: 0.87,
+=======
+                    red: 1,
+                    green: 0.75,
+                    blue: 0.8,
+>>>>>>> 38c5d18 (change tables)
                   },
                   textFormat: {
                     bold: true,
@@ -218,76 +229,101 @@ const stylePaxListSection = async (sheets, spreadsheetId, PaxNo) => {
   }
 };
 
+//Green table
 const stylePersonalPreferencesSection = async (sheets, spreadsheetId) => {
   try {
     await sheets.spreadsheets.batchUpdate({
       spreadsheetId: spreadsheetId,
       resource: {
         requests: [
+          // Apply green background to the entire section first
+          {
+            repeatCell: {
+              range: {
+                sheetId: 0,
+                startRowIndex: 0,
+                endRowIndex: 5,
+                startColumnIndex: 7,
+                endColumnIndex: 12,
+              },
+              cell: {
+                userEnteredFormat: {
+                  backgroundColor: {
+                    red: 0.7,
+                    green: 0.87,
+                    blue: 0.71,
+                  },
+                  textFormat: {
+                    bold: true,
+                  },
+                },
+              },
+              fields: "userEnteredFormat.backgroundColor,userEnteredFormat.textFormat.bold",
+            },
+          },
+          // Merge cells
           {
             mergeCells: {
               range: {
                 sheetId: 0,
                 startRowIndex: 0,
                 endRowIndex: 1,
+<<<<<<< HEAD
                 startColumnIndex: 8,
                 endColumnIndex: 13,
+=======
+                startColumnIndex: 7,
+                endColumnIndex: 9,
               },
               mergeType: "MERGE_ALL",
             },
           },
           {
-            repeatCell: {
+            mergeCells: {
               range: {
                 sheetId: 0,
-                startRowIndex: 3,
-                endRowIndex: 5,
-                startColumnIndex: 8,
-                endColumnIndex: 13,
+                startRowIndex: 0,
+                endRowIndex: 1,
+                startColumnIndex: 9,
+                endColumnIndex: 12,
+>>>>>>> 38c5d18 (change tables)
               },
-              cell: {
-                userEnteredFormat: {
-                  backgroundColor: {
-                    red: 0.7,
-                    green: 0.87,
-                    blue: 0.71,
-                  },
-                  textFormat: {
-                    bold: true,
-                  },
-                  wrapStrategy: "WRAP",
-                  horizontalAlignment: "LEFT",
-                },
-              },
-              fields:
-                "userEnteredFormat.backgroundColor,userEnteredFormat.textFormat,userEnteredFormat.horizontalAlignment,userEnteredFormat.verticalAlignment,userEnteredFormat.wrapStrategy",
+              mergeType: "MERGE_ALL",
             },
           },
           {
-            repeatCell: {
+            mergeCells: {
               range: {
                 sheetId: 0,
+                startRowIndex: 1,
+                endRowIndex: 2,
+                startColumnIndex: 8,
+<<<<<<< HEAD
+                endColumnIndex: 13,
+=======
+                endColumnIndex: 10,
+>>>>>>> 38c5d18 (change tables)
+              },
+              mergeType: "MERGE_ALL",
+            },
+          },
+          {
+            mergeCells: {
+              range: {
+                sheetId: 0,
+<<<<<<< HEAD
                 startRowIndex: 4,
                 endRowIndex: 5,
                 startColumnIndex: 8,
                 endColumnIndex: 13,
+=======
+                startRowIndex: 1,
+                endRowIndex: 2,
+                startColumnIndex: 10,
+                endColumnIndex: 12,
+>>>>>>> 38c5d18 (change tables)
               },
-              cell: {
-                userEnteredFormat: {
-                  backgroundColor: {
-                    red: 0.7,
-                    green: 0.87,
-                    blue: 0.71,
-                  },
-                  textFormat: {
-                    bold: true,
-                  },
-                  wrapStrategy: "WRAP",
-                  horizontalAlignment: "LEFT", // Align text to the left for second and third rows
-                },
-              },
-              fields:
-                "userEnteredFormat.backgroundColor,userEnteredFormat.textFormat,userEnteredFormat.horizontalAlignment,userEnteredFormat.verticalAlignment,userEnteredFormat.wrapStrategy",
+              mergeType: "MERGE_ALL",
             },
           },
           {
@@ -314,28 +350,35 @@ const stylePersonalPreferencesSection = async (sheets, spreadsheetId) => {
               mergeType: "MERGE_ALL",
             },
           },
+          // Apply red text to specific cells AFTER basic formatting
           {
             repeatCell: {
               range: {
                 sheetId: 0,
                 startRowIndex: 0,
                 endRowIndex: 1,
+<<<<<<< HEAD
                 startColumnIndex: 8,
                 endColumnIndex: 13,
+=======
+                startColumnIndex: 9,
+                endColumnIndex: 12,
+>>>>>>> 38c5d18 (change tables)
               },
               cell: {
                 userEnteredFormat: {
-                  backgroundColor: {
-                    red: 0.7,
-                    green: 0.87,
-                    blue: 0.71,
-                  },
                   textFormat: {
+                    foregroundColor: {
+                      red: 1,
+                      green: 0,
+                      blue: 0,
+                    },
                     bold: true,
-                    fontSize: 11,
                   },
+                  horizontalAlignment: "LEFT",
                 },
               },
+<<<<<<< HEAD
               fields:
                 "userEnteredFormat.backgroundColor,userEnteredFormat.textFormat,userEnteredFormat.horizontalAlignment,userEnteredFormat.verticalAlignment",
             },
@@ -432,10 +475,33 @@ const stylePersonalPreferencesSection = async (sheets, spreadsheetId) => {
                   blue: 0,
                 },
               },
+=======
+              fields: "userEnteredFormat.textFormat.foregroundColor,userEnteredFormat.textFormat.bold,userEnteredFormat.horizontalAlignment"
+>>>>>>> 38c5d18 (change tables)
             },
           },
+          // Apply special formatting to other cells
           {
             repeatCell: {
+              range: {
+                sheetId: 0,
+                startRowIndex: 3,
+                endRowIndex: 5,
+                startColumnIndex: 8,
+                endColumnIndex: 12,
+              },
+              cell: {
+                userEnteredFormat: {
+                  wrapStrategy: "WRAP",
+                  horizontalAlignment: "LEFT",
+                },
+              },
+              fields: "userEnteredFormat.horizontalAlignment,userEnteredFormat.verticalAlignment,userEnteredFormat.wrapStrategy",
+            },
+          },
+          // Apply borders
+          {
+            updateBorders: {
               range: {
                 sheetId: 0,
                 startRowIndex: 0,
@@ -443,21 +509,42 @@ const stylePersonalPreferencesSection = async (sheets, spreadsheetId) => {
                 startColumnIndex: 8,
                 endColumnIndex: 13,
               },
-              cell: {
-                userEnteredFormat: {
-                  backgroundColor: {
-                    //Light Green
-                    red: 0.7,
-                    green: 0.87,
-                    blue: 0.71,
-                  },
-                  textFormat: {
-                    bold: true, // Set text to bold for the first cell in the row
-                  },
+              top: {
+                style: "SOLID",
+                width: 5,
+                color: {
+                  red: 0,
+                  green: 0,
+                  blue: 0,
                 },
               },
-              fields:
-                "userEnteredFormat.backgroundColor,userEnteredFormat.textFormat",
+              bottom: {
+                style: "SOLID",
+                width: 5,
+                color: {
+                  red: 0,
+                  green: 0,
+                  blue: 0,
+                },
+              },
+              left: {
+                style: "SOLID",
+                width: 5,
+                color: {
+                  red: 0,
+                  green: 0,
+                  blue: 0,
+                },
+              },
+              right: {
+                style: "SOLID",
+                width: 5,
+                color: {
+                  red: 0,
+                  green: 0,
+                  blue: 0,
+                },
+              },
             },
           },
         ],
@@ -468,6 +555,7 @@ const stylePersonalPreferencesSection = async (sheets, spreadsheetId) => {
   }
 };
 
+//Blue table
 const styleAccommodationSection = async (
   sheets,
   spreadsheetId,
@@ -487,56 +575,9 @@ const styleAccommodationSection = async (
               range: {
                 sheetId: 0,
                 startRowIndex: startingRow,
-                endRowIndex: startingRow + 1,
-                startColumnIndex: 0,
-                endColumnIndex: 11,
-              },
-              top: {
-                style: "SOLID",
-                width: 5,
-                color: {
-                  red: 0,
-                  green: 0,
-                  blue: 0,
-                },
-              },
-              bottom: {
-                style: "SOLID",
-                width: 5,
-                color: {
-                  red: 0,
-                  green: 0,
-                  blue: 0,
-                },
-              },
-              left: {
-                style: "SOLID",
-                width: 5,
-                color: {
-                  red: 0,
-                  green: 0,
-                  blue: 0,
-                },
-              },
-              right: {
-                style: "SOLID",
-                width: 5,
-                color: {
-                  red: 0,
-                  green: 0,
-                  blue: 0,
-                },
-              },
-            },
-          },
-          {
-            updateBorders: {
-              range: {
-                sheetId: 0,
-                startRowIndex: startingRow,
                 endRowIndex: endingRow,
                 startColumnIndex: 0,
-                endColumnIndex: 11,
+                endColumnIndex: 12,
               },
               top: {
                 style: "SOLID",
@@ -583,7 +624,7 @@ const styleAccommodationSection = async (
                 startRowIndex: startingRow,
                 endRowIndex: endingRow,
                 startColumnIndex: 0,
-                endColumnIndex: 11,
+                endColumnIndex: 12,
               },
               cell: {
                 userEnteredFormat: {
