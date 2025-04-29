@@ -134,4 +134,4 @@ const exportToPDF = async (body, drive, pdfName) => {
   );
 };
 
-module.exports = { formatDate, exportToPDF };
+module.exports = { formatDate };
