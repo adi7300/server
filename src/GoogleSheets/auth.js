@@ -1,9 +1,8 @@
-// import { google } from "googleapis";
 const { google } = require("googleapis");
 const gcsKey = JSON.parse(
   Buffer.from(process.env.GCP_CRED_FILE, "base64").toString()
 );
-console.log("🚀 ~ file: auth.js:6 ~ gcsKey:", gcsKey)
+
 const authSheets = async () => {
   const auth = new google.auth.GoogleAuth({
     // keyFile: "./keys.json",

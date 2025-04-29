@@ -1,8 +1,4 @@
-// import express from 'express';
-// import cors from 'cors';
-// import bodyParser from 'body-parser';
-// import DBService from './src/dbService/db.service.mjs'
-// import googleSheets from './src/GoogleSheets/google-sheets.js';
+// npm run server
 require('dotenv').config()
 const express = require("express");
 const cors = require("cors");
@@ -14,7 +10,6 @@ const {
 } = require("./src/GoogleSheets/google-sheets");
 const app = express();
 const PORT = 8080;
-// const PORT = 3001;
 
 app.use(cors());
 app.use(cors({ origin: true, credentials: true }));
@@ -24,7 +19,7 @@ app.get("/", (req, res) => {
   res.json({ mss: "hello world" });
 });
 app.post("/api/submitForm", async (req, res) => {
-  console.log("🚀 ~ file: index.js:17 ~ app.post ~ req:", req.body);
+  console.log("🚀 ~ file: index.js:17 ~ app.post ~ req:");
   try {
     await addCustomer(req.body);
     await createPaxFolder(req.body);

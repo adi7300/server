@@ -21,11 +21,7 @@ const getSheetsData = async (spreadsheetId) => {
 };
 
 const createSpreadsheet = async (req, res) => {
-  const { sheets, drive } = await authSheets();
-  console.log(
-    "🚀 ~ file: google-sheets.js:32 ~ createSpreadsheet ~ sheets:",
-    sheets
-  );
+  const { sheets } = await authSheets();
   const tourLeaderName = req.body.tourLeader.name;
 
   try {
@@ -237,9 +233,57 @@ const writeAccommodationData = async (
       paxList.length,
       accList.length
     );
+
+    const dropdownValues = await getDropdownValues(sheets);
+    await addDropdownToColC(
+      sheets,
+      spreadsheetId,
+      startingRow,
+      startingRow + valuesToAppend.length,
+      dropdownValues
+    );
   } catch (error) {
     console.error("writeSheetsData error is:", error);
   }
+};
+
+const getDropdownValues = async (sheets) => {
+  const result = await sheets.spreadsheets.values.get({
+    spreadsheetId: '1dLxWP5E8H0JU9DVcRHZR9WUswIA7CZcIxg_AjHLu9-g',
+    range: 'Sheet1!B:B',
+  });
+
+  console.log('result.data.values: ', result.data.values)
+  return result.data.values.flat().filter(Boolean);
+};
+
+const addDropdownToColC = async (sheets, spreadsheetId, startRow, endRow, dropdownValues) => {
+  await sheets.spreadsheets.batchUpdate({
+    spreadsheetId,
+    requestBody: {
+      requests: [
+        {
+          setDataValidation: {
+            range: {
+              sheetId: 0, // Usually 0 for the first sheet, but you may want to fetch the actual sheetId
+              startRowIndex: startRow, // 0-based, inclusive
+              endRowIndex: endRow - 1,     // 0-based, exclusive
+              startColumnIndex: 2,     // Col C is index 2
+              endColumnIndex: 3,
+            },
+            rule: {
+              condition: {
+                type: 'ONE_OF_LIST',
+                values: dropdownValues.map(v => ({ userEnteredValue: v })),
+              },
+              showCustomUi: true,
+              strict: true,
+            },
+          },
+        },
+      ],
+    },
+  });
 };
 
 // export default new GoogleSheets();

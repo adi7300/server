@@ -10,11 +10,6 @@ const {
 
 const customerCollection = collection(db, "customers");
 
-// class DBService {
-
-// }
-
-// export default new DBService();
 const getCustomersList = () => {
   return getDocs(customerCollection);
 };
@@ -25,10 +20,10 @@ const getCustomer = () => {
 };
 
 const addCustomer = async (newCustomer) => {
-  console.log("🚀 ~ file: db.service.js:28 ~ addCustomer ~ newCustomer:", newCustomer)
+  console.log("🚀 ~ file: db.service.js:28 ~ addCustomer ~ newCustomer")
   try {
-  const result=  await addDoc(customerCollection, newCustomer);
-  console.log("🚀 ~ file: db.service.js:31 ~ addCustomer ~ result:", result.id)
+    const result = await addDoc(customerCollection, newCustomer);
+    console.log("🚀 ~ file: db.service.js:31 ~ addCustomer ~ result")
   } catch (err) {
     console.log(err);
   }
