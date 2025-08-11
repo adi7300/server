@@ -148,7 +148,7 @@ const writePaxListData = async (sheets, spreadsheetId, { paxList }) => {
 const writePersonalPreferencesData = async (
   sheets,
   spreadsheetId,
-  { otherComments, bookingPreference }
+  { otherComments, bookingPreference, bookingEmail, termsAccepted }
 ) => {
   const fromDate = bookingPreference.startingDate
     ? formatDate(bookingPreference.startingDate)
@@ -157,21 +157,42 @@ const writePersonalPreferencesData = async (
     ? formatDate(bookingPreference.endingDate)
     : "";
 
+  // Format room type and bed type (replace hyphens with spaces and capitalize first letter)
+  const formatText = (text) => {
+    if (!text) return "";
+    return text.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
+  };
+
+  const roomType = formatText(bookingPreference.roomType);
+  const bedType = formatText(bookingPreference.bedType);
+
   try {
     await sheets.spreadsheets.values.update({
       spreadsheetId: spreadsheetId,
-
       range: "Sheet1!H1:L5",
       valueInputOption: "USER_ENTERED",
       resource: {
         values: [
-          ["Personal preferences", "", "", bookingPreference.flightBooked ? "Flights Reserved" : "", ""],
-          ["Dates", "", bookingPreference.departureFlightNo ? `${fromDate} (${bookingPreference.departureFlightNo})` : fromDate, "", bookingPreference.returnFlightNo
-            ? `${untilDate} (${bookingPreference.returnFlightNo})`
-            : untilDate],
-          ["Room Type", bookingPreference.roomType, bookingPreference.bedType, "", bookingPreference.level],
-          ["Booking Comments", bookingPreference.remarks, "", "", ""],
-          ["General Comments", otherComments, "", "", ""],
+          // Row 1: Personal preferences | empty | Flights Reserved | Terms accepted
+          ["Personal preferences", "", bookingPreference.flightBooked ? "Flights Reserved" : "", "", termsAccepted ? "Terms accepted" : "X"],
+
+          // Row 2: Dates | fromDate + departure flight | empty | untilDate + return flight | empty
+          ["Dates",
+            fromDate + (bookingPreference.departureFlightNo ? ` (${bookingPreference.departureFlightNo})` : ""),
+            "",
+            untilDate + (bookingPreference.returnFlightNo ? ` (${bookingPreference.returnFlightNo})` : ""),
+            ""],
+
+          // Row 3: Room Type | roomType | empty | bedType | level
+          ["Room Type", roomType, "", bedType || "", formatText(bookingPreference.level)],
+
+          // Row 4: Booking Comments | booking email or remarks | empty | empty | empty
+          ["Booking Comments",
+            bookingEmail ? `${bookingPreference.remarks || ""}. Booking.com Email: ${bookingEmail}` : (bookingPreference.remarks || ""),
+            "", "", ""],
+
+          // Row 5: General Comments | comments | empty | empty | empty
+          ["General Comments", otherComments || "", "", "", ""],
         ],
       },
     });
@@ -253,7 +274,7 @@ const getDropdownValues = async (sheets) => {
     range: 'Sheet1!B:B',
   });
 
-  console.log('result.data.values: ', result.data.values)
+  // console.log('result.data.values: ', result.data.values)
   return result.data.values.flat().filter(Boolean);
 };
 

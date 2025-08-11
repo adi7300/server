@@ -1,5 +1,6 @@
 //Grey table
 const styleTourLeaderSection = async (sheets, spreadsheetId) => {
+  console.log("🚀🚀🚀 - Starting GREY Table styling");
   try {
     await sheets.spreadsheets.batchUpdate({
       spreadsheetId: spreadsheetId,
@@ -87,6 +88,7 @@ const styleTourLeaderSection = async (sheets, spreadsheetId) => {
 
 //Pink table
 const stylePaxListSection = async (sheets, spreadsheetId, PaxNo) => {
+  console.log("🚀🚀🚀 - Starting PINK Table styling");
   try {
     await sheets.spreadsheets.batchUpdate({
       spreadsheetId: spreadsheetId,
@@ -173,21 +175,23 @@ const stylePaxListSection = async (sheets, spreadsheetId, PaxNo) => {
 };
 
 //Green table
+
 const stylePersonalPreferencesSection = async (sheets, spreadsheetId) => {
+  console.log("🚀🚀🚀 - Starting GREEN Table styling");
   try {
     await sheets.spreadsheets.batchUpdate({
       spreadsheetId: spreadsheetId,
       resource: {
         requests: [
-          // Apply green background to the entire section first
+          // Apply green background to the entire section FIRST
           {
             repeatCell: {
               range: {
                 sheetId: 0,
                 startRowIndex: 0,
                 endRowIndex: 5,
-                startColumnIndex: 7, // Start at column H
-                endColumnIndex: 12, // End at column L
+                startColumnIndex: 7, // Column H
+                endColumnIndex: 12, // Column L
               },
               cell: {
                 userEnteredFormat: {
@@ -204,15 +208,16 @@ const stylePersonalPreferencesSection = async (sheets, spreadsheetId) => {
               fields: "userEnteredFormat.backgroundColor,userEnteredFormat.textFormat.bold",
             },
           },
-          // Merge cells for the first row (H1-I1 and J1-L1)
+
+          // Row 1 merges: H1-I1 (Personal preferences) and J1-K1 (Flights Reserved) and L1 (Terms)
           {
             mergeCells: {
               range: {
                 sheetId: 0,
                 startRowIndex: 0,
                 endRowIndex: 1,
-                startColumnIndex: 7,
-                endColumnIndex: 9,
+                startColumnIndex: 7, // H1
+                endColumnIndex: 9,   // I1
               },
               mergeType: "MERGE_ALL",
             },
@@ -223,75 +228,122 @@ const stylePersonalPreferencesSection = async (sheets, spreadsheetId) => {
                 sheetId: 0,
                 startRowIndex: 0,
                 endRowIndex: 1,
-                startColumnIndex: 9,
-                endColumnIndex: 12,
+                startColumnIndex: 9,  // J1
+                endColumnIndex: 11,  // K1
               },
               mergeType: "MERGE_ALL",
             },
           },
-          // Keep H2 as a single cell and merge I2-J2
+
+          // Row 2 merges: I2-J2 and K2-L2
           {
             mergeCells: {
               range: {
                 sheetId: 0,
                 startRowIndex: 1,
                 endRowIndex: 2,
-                startColumnIndex: 8,
-                endColumnIndex: 10,
+                startColumnIndex: 8,  // I2
+                endColumnIndex: 10,  // J2
               },
               mergeType: "MERGE_ALL",
             },
           },
-          // Merge K2-L2
           {
             mergeCells: {
               range: {
                 sheetId: 0,
                 startRowIndex: 1,
                 endRowIndex: 2,
-                startColumnIndex: 10,
-                endColumnIndex: 12,
+                startColumnIndex: 10, // K2
+                endColumnIndex: 12,  // L2
               },
               mergeType: "MERGE_ALL",
             },
           },
-          // Merge I4-L4 and I5-L5
+
+          // Row 3 merges: I3-J3 and K3-L3
+          {
+            mergeCells: {
+              range: {
+                sheetId: 0,
+                startRowIndex: 2,
+                endRowIndex: 3,
+                startColumnIndex: 8,  // I3
+                endColumnIndex: 10,  // J3
+              },
+              mergeType: "MERGE_ALL",
+            },
+          },
+          {
+            mergeCells: {
+              range: {
+                sheetId: 0,
+                startRowIndex: 2,
+                endRowIndex: 3,
+                startColumnIndex: 10, // K3
+                endColumnIndex: 11,  // L3
+              },
+              mergeType: "MERGE_ALL",
+            },
+          },
+          {
+            mergeCells: {
+              range: {
+                sheetId: 0,
+                startRowIndex: 2,
+                endRowIndex: 3,
+                startColumnIndex: 11,  // I3
+                endColumnIndex: 12,  // J3
+              },
+              mergeType: "MERGE_ALL",
+            },
+          },
+
+          // Row 4: Booking Comments (I4-L4)
           {
             mergeCells: {
               range: {
                 sheetId: 0,
                 startRowIndex: 3,
                 endRowIndex: 4,
-                startColumnIndex: 8,
-                endColumnIndex: 12,
+                startColumnIndex: 8,  // I4
+                endColumnIndex: 12,  // L4
               },
               mergeType: "MERGE_ALL",
             },
           },
+
+          // Row 5: General Comments (I5-L5)
           {
             mergeCells: {
               range: {
                 sheetId: 0,
                 startRowIndex: 4,
                 endRowIndex: 5,
-                startColumnIndex: 8,
-                endColumnIndex: 12,
+                startColumnIndex: 8,  // I5
+                endColumnIndex: 12,  // L5
               },
               mergeType: "MERGE_ALL",
             },
           },
-          // Apply red text to specific cells AFTER basic formatting
+
+          // Red text for "Terms accepted" cell (L1 only)
           {
             repeatCell: {
               range: {
                 sheetId: 0,
                 startRowIndex: 0,
                 endRowIndex: 1,
-                startColumnIndex: 9,
-                endColumnIndex: 12,
+                startColumnIndex: 9, // J1
+                endColumnIndex: 11,  // K1
               },
               cell: {
                 userEnteredFormat: {
+                  backgroundColor: {
+                    red: 0.7,
+                    green: 0.87,
+                    blue: 0.71,
+                  },
                   textFormat: {
                     foregroundColor: {
                       red: 1,
@@ -303,29 +355,37 @@ const stylePersonalPreferencesSection = async (sheets, spreadsheetId) => {
                   horizontalAlignment: "LEFT",
                 },
               },
-              fields: "userEnteredFormat.textFormat.foregroundColor,userEnteredFormat.textFormat.bold,userEnteredFormat.horizontalAlignment"
+              fields: "userEnteredFormat.backgroundColor,userEnteredFormat.textFormat.foregroundColor,userEnteredFormat.textFormat.bold,userEnteredFormat.horizontalAlignment"
             },
           },
-          // Apply special formatting to other cells
+
+          // Text wrapping for comment cells
           {
             repeatCell: {
               range: {
                 sheetId: 0,
                 startRowIndex: 3,
                 endRowIndex: 5,
-                startColumnIndex: 7,
-                endColumnIndex: 12,
+                startColumnIndex: 8,  // I4-I5
+                endColumnIndex: 12,  // L4-L5
               },
               cell: {
                 userEnteredFormat: {
+                  backgroundColor: {
+                    red: 0.7,
+                    green: 0.87,
+                    blue: 0.71,
+                  },
                   wrapStrategy: "WRAP",
                   horizontalAlignment: "LEFT",
+                  verticalAlignment: "TOP",
                 },
               },
-              fields: "userEnteredFormat.horizontalAlignment,userEnteredFormat.verticalAlignment,userEnteredFormat.wrapStrategy",
+              fields: "userEnteredFormat.backgroundColor,userEnteredFormat.horizontalAlignment,userEnteredFormat.verticalAlignment,userEnteredFormat.wrapStrategy",
             },
           },
-          // Apply borders
+
+          // Borders around the entire section
           {
             updateBorders: {
               range: {
@@ -338,46 +398,33 @@ const stylePersonalPreferencesSection = async (sheets, spreadsheetId) => {
               top: {
                 style: "SOLID",
                 width: 5,
-                color: {
-                  red: 0,
-                  green: 0,
-                  blue: 0,
-                },
+                color: { red: 0, green: 0, blue: 0 },
               },
               bottom: {
                 style: "SOLID",
                 width: 5,
-                color: {
-                  red: 0,
-                  green: 0,
-                  blue: 0,
-                },
+                color: { red: 0, green: 0, blue: 0 },
               },
               left: {
                 style: "SOLID",
                 width: 5,
-                color: {
-                  red: 0,
-                  green: 0,
-                  blue: 0,
-                },
+                color: { red: 0, green: 0, blue: 0 },
               },
               right: {
                 style: "SOLID",
                 width: 5,
-                color: {
-                  red: 0,
-                  green: 0,
-                  blue: 0,
-                },
+                color: { red: 0, green: 0, blue: 0 },
               },
             },
           },
         ],
       },
     });
+
+
   } catch (error) {
     console.error("stylePersonalPreferencesSection error is:", error);
+    throw error; // Re-throw to see the actual error
   }
 };
 
@@ -388,7 +435,7 @@ const styleAccommodationSection = async (sheets, spreadsheetId, paxNo, accNo) =>
   const startingRow = Math.max(6, paxNo + 3);
   const endingRow = startingRow + accNo + 1;
 
-  console.log(`Styling accommodation section from row ${startingRow} to ${endingRow}`);
+  console.log("🚀🚀🚀 - Starting BLUE Table styling");
 
   try {
     await sheets.spreadsheets.batchUpdate({
