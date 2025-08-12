@@ -2,8 +2,15 @@ const { google } = require("googleapis");
 
 let gcsKey;
 try {
-  // Use the correct credentials file
-  gcsKey = require("/Users/adimagori/Development/json/tmb_2024_78ad24b6f2da.json");
+  // Try to load from environment variable first (for production/Vercel)
+  if (process.env.GCP_CRED_FILE) {
+    const credBase64 = process.env.GCP_CRED_FILE.replace(/"/g, '');
+    const credString = Buffer.from(credBase64, 'base64').toString('utf8');
+    gcsKey = JSON.parse(credString);
+  } else {
+    // Fallback to local file for development
+    gcsKey = require("../../auth/tmb_2024_78ad24b6f2da.json");
+  }
   
   // Fix the private key formatting - this is crucial
   if (gcsKey.private_key) {
