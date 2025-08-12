@@ -2,15 +2,15 @@ const { google } = require("googleapis");
 
 let gcsKey;
 try {
-  const credentialsString = Buffer.from(process.env.GCP_CRED_FILE, "base64").toString();
-  gcsKey = JSON.parse(credentialsString);
-
+  // Use the correct credentials file
+  gcsKey = require("/Users/adimagori/Development/json/tmb_2024_78ad24b6f2da.json");
+  
   // Fix the private key formatting - this is crucial
   if (gcsKey.private_key) {
     gcsKey.private_key = gcsKey.private_key.replace(/\\n/g, '\n');
   }
 } catch (error) {
-  console.error("Error parsing credentials:", error);
+  console.error("Error loading credentials:", error);
   throw error;
 }
 
